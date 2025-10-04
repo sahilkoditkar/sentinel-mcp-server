@@ -1,5 +1,5 @@
 from fastmcp import FastMCP
-import sentinel
+import sentinel_client
 
 mcp = FastMCP("Sentinel-MCP", log_level="INFO")
 
@@ -9,7 +9,7 @@ mcp = FastMCP("Sentinel-MCP", log_level="INFO")
     description="Fetches Sentinel incidents. Returns a list of incidents with title, severity, status, and description.",
 )
 def get_incidents():
-    incidents = sentinel.get_sentinel_incidents()
+    incidents = sentinel_client.get_sentinel_incidents()
     return incidents
 
 
@@ -18,7 +18,7 @@ def get_incidents():
     description="Execute a KQL query against the Sentinel Log Analytics workspace. Returns rows as JSON objects. Example query: 'SecurityIncident | take 5'.",
 )
 def run_kql_tool(query: str):
-    return sentinel.run_kql_query(query)
+    return sentinel_client.run_kql_query(query)
 
 
 if __name__ == "__main__":
